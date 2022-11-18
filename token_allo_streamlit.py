@@ -160,7 +160,7 @@ def final_distro_pie(data, labels, token, hoverinfo, textinfo):
     fig.update_traces(
         hoverinfo=hoverinfo, textinfo=textinfo
     )  # remove to show only % label on chart
-    fig.update_layout(title_text=f'{token} Allocation', title_x=0.45)
+    fig.update_layout(title_text=f'{token} Allocation', title_x=0.5)
 
     return fig
 
@@ -171,7 +171,7 @@ def supply_distribution_area(data, token):
     fig = px.area(data)
     fig.update_layout(
         title_text=f'{token} Supply Distribution',
-        title_x=0.45,
+        title_x=0.5,
         xaxis_title='Date',
         yaxis_title='Token Supply',
         legend_title='Holders',
@@ -200,7 +200,7 @@ def evolution_supply_dist(data, token):
         autosize=False,
         width=1000,
         height=550,
-        title_x=0.4,
+        title_x=0.5,
     )
 
     return fig
@@ -435,6 +435,7 @@ def main():
 
     fig.update_xaxes(tickangle=45)
     fig.update_layout(
+        title_text=f'{token} Inflation'
         yaxis=dict(
             title=f'{token} New Supply [%]',
             titlefont=dict(color='#1f77b4'),
