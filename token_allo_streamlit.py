@@ -435,7 +435,7 @@ def main():
 
     fig.update_xaxes(tickangle=45)
     fig.update_layout(
-        title_text=f'{token} Inflation'
+        title_text=f'{token} Inflation',
         yaxis=dict(
             title=f'{token} New Supply [%]',
             titlefont=dict(color='#1f77b4'),
