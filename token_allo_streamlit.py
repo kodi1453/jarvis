@@ -14,7 +14,6 @@ coins = [
     'atlas',
     'polis',
     'aptos',
-    'gene',
     'aury',
 ]
 
