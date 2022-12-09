@@ -34,7 +34,7 @@ def inflation(df, emmission_schedule):
 def read_data():
 
     urls = [
-        f'https://raw.githubusercontent.com/kodama222/jarvis/main/data/ftx/{coin}.csv'
+        f'https://raw.githubusercontent.com/kodi1453/jarvis/main/data/{coin}.csv'
         for coin in coins
     ]
 
