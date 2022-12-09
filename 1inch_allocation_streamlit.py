@@ -207,7 +207,7 @@ def main():
         parties_dict,
     ) = read_data()
 
-    st.title('Sam Tokens Supply Distribution')
+    st.title('1INCH Supply Distribution')
 
     token = st.sidebar.selectbox(
         'What Sam token do you want to know more about?',
@@ -219,11 +219,6 @@ def main():
         ('All Holders', 'Different Parties'),
     )
 
-    pa = st.sidebar.selectbox(
-        'Do you want to see the supply distribution in percentage or absolute terms?',
-        ('Percentage', 'Absolute'),
-    )
-
     all_initial_allo = (dist_dict[token].iloc[3]).astype(float)
 
     parties_initial_allo = [
@@ -233,69 +228,34 @@ def main():
 
     if option == 'All Holders':
 
-        if pa == 'Percentage':
+        # plotly pie chart of final token distribution
+        fig = final_distro_pie(
+            data=all_initial_allo.values,
+            labels=all_initial_allo.index,
+            token=token,
+            hoverinfo='label+percent',
+            textinfo='label+percent',
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
-            # plotly pie chart of final token distribution
-            fig = final_distro_pie(
-                data=all_initial_allo.values,
-                labels=all_initial_allo.index,
-                token=token,
-                hoverinfo='label+percent',
-                textinfo='label+percent',
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-            # stacked area chart of supply distribution
-            fig = supply_distribution_area(
-                data=totalsupply_dict[token].drop(
-                    columns=[
-                        'team_advisors',
-                        'investors',
-                        'public',
-                        'foundation',
-                        'ecosystem',
-                        'validators',
-                        'annual_inflation',
-                        'total',
-                        'new_supply',
-                    ]
-                ),
-                token=token,
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-        elif pa == 'Absolute':
-
-            # plotly pie chart of final token distribution
-            fig = final_distro_pie(
-                data=all_initial_allo.values
-                * float(data_dict[token]['start_tokens']),
-                labels=all_initial_allo.index,
-                token=token,
-                hoverinfo='label+value',
-                textinfo='label+value',
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-            # stacked area chart of supply distribution
-            fig = supply_distribution_area(
-                data=totalsupply_dict[token].drop(
-                    columns=[
-                        'team_advisors',
-                        'investors',
-                        'public',
-                        'foundation',
-                        'ecosystem',
-                        'validators',
-                        'annual_inflation',
-                        'total',
-                        'new_supply',
-                    ]
-                )
-                * float(data_dict[token]['start_tokens']),
-                token=token,
-            )
-            st.plotly_chart(fig, use_container_width=True)
+        # stacked area chart of supply distribution
+        fig = supply_distribution_area(
+            data=totalsupply_dict[token].drop(
+                columns=[
+                    'team_advisors',
+                    'investors',
+                    'public',
+                    'foundation',
+                    'ecosystem',
+                    'validators',
+                    'annual_inflation',
+                    'total',
+                    'new_supply',
+                ]
+            ),
+            token=token,
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
         # fractional evolution of supply distribution
         fig = evolution_supply_dist(
@@ -318,76 +278,38 @@ def main():
 
     elif option == 'Different Parties':
 
-        if pa == 'Percentage':
+        # plotly pie chart of final token distribution
+        fig = final_distro_pie(
+            data=parties_initial_allo,
+            labels=[
+                'Team & Advisors',
+                'Investors',
+                'Public',
+                'Foundation',
+                'Ecosystem',
+                'Validators',
+            ],
+            token=token,
+            hoverinfo='label+percent',
+            textinfo='label+percent',
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
-            # plotly pie chart of final token distribution
-            fig = final_distro_pie(
-                data=parties_initial_allo,
-                labels=[
-                    'Team & Advisors',
-                    'Investors',
-                    'Public',
-                    'Foundation',
-                    'Ecosystem',
-                    'Validators',
-                ],
-                token=token,
-                hoverinfo='label+percent',
-                textinfo='label+percent',
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-            # stacked area chart of supply distribution
-            fig = supply_distribution_area(
-                data=totalsupply_dict[token][
-                    [
-                        'team_advisors',
-                        'investors',
-                        'public',
-                        'foundation',
-                        'ecosystem',
-                        'validators',
-                    ]
-                ],
-                token=token,
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-        elif pa == 'Absolute':
-
-            # plotly pie chart of final token distribution
-            fig = final_distro_pie(
-                data=parties_initial_allo,
-                labels=[
-                    'Team & Advisors',
-                    'Investors',
-                    'Public',
-                    'Foundation',
-                    'Ecosystem',
-                    'Validators',
-                ],
-                token=token,
-                hoverinfo='label+value',
-                textinfo='label+value',
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-            # stacked area chart of supply distribution
-            fig = supply_distribution_area(
-                data=totalsupply_dict[token][
-                    [
-                        'team_advisors',
-                        'investors',
-                        'public',
-                        'foundation',
-                        'ecosystem',
-                        'validators',
-                    ]
+        # stacked area chart of supply distribution
+        fig = supply_distribution_area(
+            data=totalsupply_dict[token][
+                [
+                    'team_advisors',
+                    'investors',
+                    'public',
+                    'foundation',
+                    'ecosystem',
+                    'validators',
                 ]
-                * float(data_dict[token]['start_tokens']),
-                token=token,
-            )
-            st.plotly_chart(fig, use_container_width=True)
+            ],
+            token=token,
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
         # fractional evolution of supply distribution
         fig = evolution_supply_dist(
