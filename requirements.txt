@@ -6,3 +6,5 @@ numpy
 pandas
 requests
 altair
+web3==5.31.3
+etherscan_python==2.1.0
