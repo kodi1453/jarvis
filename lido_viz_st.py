@@ -497,7 +497,7 @@ def main():
             values=lido_og.iloc[-1].values,
             title='Token Distribution',
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=False)
 
     with col2:
         st.header('Actual')
@@ -513,7 +513,7 @@ def main():
             values=actual_token_distro,
             title='Token Distribution',
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=False)
 
     return
 
