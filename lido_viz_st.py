@@ -519,5 +519,5 @@ def main():
 
 
 if __name__ == '__main__':
-    st.set_page_config(page_title='Supply Distribution Tracker', layout='wide)
+    st.set_page_config(page_title='Supply Distribution Tracker', layout='wide')
     main()
