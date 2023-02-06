@@ -10,6 +10,7 @@ from web3 import Web3
 from typing import Optional
 import datetime
 
+st.set_page_config(layout="wide")
 
 class SimpleEtherscanApi:
     """
@@ -497,7 +498,7 @@ def main():
             values=lido_og.iloc[-1].values,
             title='Token Distribution',
         )
-        st.plotly_chart(fig, use_container_width=False)
+        st.plotly_chart(fig, use_container_width=True)
 
     with col2:
         st.header('Actual')
@@ -513,7 +514,7 @@ def main():
             values=actual_token_distro,
             title='Token Distribution',
         )
-        st.plotly_chart(fig, use_container_width=False)
+        st.plotly_chart(fig, use_container_width=True)
 
     return
 
