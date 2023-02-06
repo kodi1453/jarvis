@@ -10,7 +10,6 @@ from web3 import Web3
 from typing import Optional
 import datetime
 
-st.set_page_config(layout="wide")
 
 class SimpleEtherscanApi:
     """
@@ -520,5 +519,5 @@ def main():
 
 
 if __name__ == '__main__':
-    st.set_page_config(page_title='Supply Distribution Tracker')
+    st.set_page_config(page_title='Supply Distribution Tracker', layout='wide)
     main()
