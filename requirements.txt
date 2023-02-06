@@ -1,4 +1,4 @@
-protobuf==3.20.1
+protobuf==3.19.5
 plotly
 streamlit==1.9.0
 matplotlib==3.5.1
