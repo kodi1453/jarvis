@@ -1,9 +1,9 @@
-protobuf==3.19.5
 plotly
-streamlit==1.9.0
+streamlit
 matplotlib==3.5.1
 numpy
 pandas
 requests
 altair
+protobuf==3.19.5
 web3==5.31.3
