@@ -6,3 +6,4 @@ pandas
 requests
 altair
 web3
+etherscan_python
