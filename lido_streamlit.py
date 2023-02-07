@@ -802,6 +802,116 @@ def main():
     # INFLATION CHARTS
     # -----------------------------------
 
+    # -----------------------------------
+    # Expected
+
+    lido_og['total'] = lido_og.sum(axis=1)
+    lido_og['new_supply'] = lido_og.total.diff()
+    lido_og.dropna(inplace=True)
+    lido_og['inflation'] = inflation(lido_og)
+
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Bar(
+            x=lido_og.index,
+            y=lido_og['new_supply'],
+            name=f'New Monthly Supply',
+            yaxis='y',
+            marker=dict(line=dict(width=1.5, color='dodgerblue')),
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=lido_og.index,
+            y=lido_og['inflation'],
+            name=f'Annual Inflation',
+            yaxis='y2',
+        )
+    )
+    fig.update_xaxes(tickangle=45)
+    fig.update_layout(
+        yaxis=dict(
+            title=f'New Daily Supply',
+            titlefont=dict(color='dodgerblue'),
+            tickfont=dict(color='dodgerblue'),
+            autotypenumbers='convert types',
+        ),
+        yaxis2=dict(
+            title=f'Annual Inflation [%]',
+            titlefont=dict(color='#d62728'),
+            tickfont=dict(color='#d62728'),
+            anchor='x',
+            overlaying='y',
+            side='right',
+        ),
+        showlegend=False,
+        autosize=True,
+        title_x=0.5,
+        template='plotly_white',
+    )
+    col1.plotly_chart(fig, use_container_width=True)
+
+    # -----------------------------------
+    # Actual
+
+    total_tokens = (
+        sum(first_investors_token_list)
+        + sum(second_investors_token_list)
+        + sum(third_investors_token_list)
+        + sum(team_validators_token_list)
+        + np.full(len(index_abs), da0_actual)
+    )
+    total_tokens_df = pd.DataFrame(total_tokens, index=index_abs).rename(
+        columns={0: 'total'}
+    )
+    total_tokens_df['new_supply'] = total_tokens_df.diff()
+    total_tokens_df.dropna(inplace=True)
+    total_tokens_df['inflation'] = inflation(total_tokens_df)
+
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Bar(
+            x=total_tokens_df.index,
+            y=total_tokens_df['new_supply'],
+            name=f'New Monthly Supply',
+            yaxis='y',
+            marker=dict(line=dict(width=1.5, color='dodgerblue')),
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=total_tokens_df.index,
+            y=total_tokens_df['inflation'],
+            name=f'Annual Inflation',
+            yaxis='y2',
+        )
+    )
+    fig.update_xaxes(tickangle=45)
+    fig.update_layout(
+        yaxis=dict(
+            title=f'New Supply [%]',
+            titlefont=dict(color='dodgerblue'),
+            tickfont=dict(color='dodgerblue'),
+            autotypenumbers='convert types',
+        ),
+        yaxis2=dict(
+            title=f'Annual Inflation [%]',
+            titlefont=dict(color='#d62728'),
+            tickfont=dict(color='#d62728'),
+            anchor='x',
+            overlaying='y',
+            side='right',
+        ),
+        showlegend=False,
+        autosize=True,
+        title_x=0.5,
+        template='plotly_white',
+    )
+
+    col2.plotly_chart(fig, use_container_width=True)
+
     return
 
 
