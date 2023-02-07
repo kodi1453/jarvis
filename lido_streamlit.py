@@ -860,7 +860,7 @@ def main():
         + sum(second_investors_token_list)
         + sum(third_investors_token_list)
         + sum(team_validators_token_list)
-        + np.full(len(index_abs), da0_actual)
+        + np.full(len(index_abs), dao_actual)
     )
     total_tokens_df = pd.DataFrame(total_tokens, index=index_abs).rename(
         columns={0: 'total'}
