@@ -399,7 +399,7 @@ def distribution_pie(labels, values, title):
     return fig
 
 
-@st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True, allow_output_mutation=True)
 def get_data():
 
     # etherscan
@@ -593,13 +593,12 @@ def get_data():
     lido_treasury_balance.amount = lido_treasury_balance.amount / 10**12
 
     dao_actual = (
-        lido_treasury_balance.amount.iloc[0]
+        1e9
         - second_investors_amount
         - third_investors_amount
         - team_validators_amount
         - first_investors_amount
     )
-
     actual_token_distro = [
         dao_actual,
         team_validators_amount,
@@ -643,14 +642,14 @@ def main():
         third_cohort,
     ) = get_data()
 
-    col1, col2 = st.columns(2)
-
-    option = st.sidebar.selectbox(
+    option = st.selectbox(
         'What kinda chart do you want to see?',
         ('OGs', 'Money Supply'),
     )
 
     if option == 'OGs':
+        
+        col1, col2 = st.columns(2)
 
         # -----------------------------------
         # PIE CHARTS
@@ -1006,6 +1005,8 @@ def main():
         # -----------------------------------
         # Original Allocation
         # -----------------------------------
+        
+        col1, col2 = st.columns(2)
 
         fig = go.Figure(
             data=[
@@ -1172,3 +1173,4 @@ if __name__ == '__main__':
         page_title='Lido Supply Distribution Tracker', layout='wide'
     )
     main()
+
