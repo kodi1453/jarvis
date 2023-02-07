@@ -947,7 +947,7 @@ def main():
         - M0: Tokens that are fully liquid and in circulation. 
         - M1: M0 + Tokens in swap contracts and synthetic versions of the token, or tokens in smart contracts that can be retrieved by an action from the owner of those tokens. 
         - M2: M1 + Tokens locked in smart contracts for a time period; unclaimed tokens. 
-        - M3: tokens that are locked and/or vesting. 
+        - M3: M2 + tokens that are locked and/or vesting. 
         
         """
         )
