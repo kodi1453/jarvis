@@ -733,7 +733,6 @@ def main():
         groupnorm='fraction',
     )
     fig.update_layout(
-        title_x=0.45,
         xaxis_title='Date',
         yaxis_title='Token Supply',
         template='plotly_white',
@@ -789,8 +788,6 @@ def main():
     )
     fig.update_layout(
         template='plotly_white',
-        title_x=0.45,
-        title_text='Lido Token Distribution',
     )
 
     col2.plotly_chart(fig, use_container_width=True)
@@ -844,7 +841,6 @@ def main():
         ),
         showlegend=False,
         autosize=True,
-        title_x=0.5,
         template='plotly_white',
     )
     col1.plotly_chart(fig, use_container_width=True)
@@ -903,7 +899,6 @@ def main():
         ),
         showlegend=False,
         autosize=True,
-        title_x=0.5,
         template='plotly_white',
     )
 
