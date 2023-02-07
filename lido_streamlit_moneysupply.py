@@ -1001,6 +1001,8 @@ def main():
         )
 
         st.subheader('Supply held by investors, validators and team')
+        
+        st.plotly_chart(fig, use_container_width=True)
 
         # -----------------------------------
         # Original Allocation
