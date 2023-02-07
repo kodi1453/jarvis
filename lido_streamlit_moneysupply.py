@@ -843,7 +843,7 @@ def main():
         fig.add_trace(
             go.Bar(
                 x=lido_og.index,
-                y=lido_og['new_supply'],
+                y=lido_og['new_supply']/10,
                 name=f'New Monthly Supply',
                 yaxis='y',
                 marker=dict(line=dict(width=1.5, color='dodgerblue')),
