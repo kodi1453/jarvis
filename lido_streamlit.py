@@ -399,7 +399,7 @@ def distribution_pie(labels, values, title):
     return fig
 
 
-@st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True, allow_output_mutation=True)
 def get_data():
 
     # etherscan
