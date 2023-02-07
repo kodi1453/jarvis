@@ -5,7 +5,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import json
 import requests
-from etherscan import Etherscan   # wrapper for etherscan api
+from etherscan import Etherscan
 from web3 import Web3
 from typing import Optional
 import datetime
@@ -1136,7 +1136,7 @@ def main():
             ]
         )
         fig.update_layout(
-            title_text=f'LDO Allocation by Address in Third Cohort',
+            title_text=f'Third Round of Investors: LDO Allocation',
             title_x=0.5,
         )
 
@@ -1159,7 +1159,7 @@ def main():
             ]
         )
         fig.update_layout(
-            title_text=f'Third Cohort: LDO in Circulation', title_x=0.5
+            title_text=f'Third Round of Investors: LDO in Circulation', title_x=0.5
         )
         fig.update_traces(texttemplate='%{percent:.1%}')
 
